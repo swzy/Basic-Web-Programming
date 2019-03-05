@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		clickOverlay();
+	});
+	//These global numbers are chosen and set by the user
+	var picNum = 0;
+	var memTime = 0;
+	var duration = 0;
+
+	//Keeps game score
+	var scores = 0;
+	var wingame = false;
+
+		/**
+	 * Shuffles array in place. ES6 version
+	 * @param {Array} a items An array containing the items.
+	 */
+	function shuffle(a) {
+	    for (let i = a.length - 1; i > 0; i--) {
+	        const j = Math.floor(Math.random() * (i + 1));
+	        [a[i], a[j]] = [a[j], a[i]];
+	    }
+	    return a;
+	}
+
+	//hardcoded picture locations
+	//TASK: These arrays should be randomly generated
+	var arr8 = [2, 4, 8, 1, 8, 3, 2, 3, 6, 5, 7, 1, 7, 5, 4, 6];
+	var arr10 =[11, 5, 3, 2, 10, 9, 1, 1, 3, 4, 7, 2, 7, 6, 5, 9, 10, 4, 6, 11];
+	var arr12 =[9, 1, 5, 6, 8, 3, 2, 3, 6, 5, 9, 11, 12, 8, 2, 1, 7, 4, 7, 4, 12, 10, 10, 11];
+
+//Grabs selected game options (AFTER START)
+	function getGameOptions() {
+		var getTimeIndex = document.getElementById('time').selectedIndex;
+		var getTimeOptions = document.getElementById('time').options;
+		memTime = parseInt(getTimeOptions[getTimeIndex].text);
+
+		var getPicIndex = document.getElementById('pics').selectedIndex;
+		var getPicOptions = document.getElementById('pics').options;
+		picNum = parseInt(getPicOptions[getPicIndex].text);
+
+
+		addTablePics(picNum);
+		document.getElementById('butt').setAttribute('onclick', 'window.location.reload()');
+	}
+
+	function incrementScores() {
+		scores+=1;
+		document.getElementById('score').innerHTML="Score: " + scores;
+
+		if (scores == picNum) {
+			document.getElementById('score').innerHTML="You win!";
+			wingame = true;
+
+			var newButton = document.getElementById('butt');
+			newButton.setAttribute('value', 'Restart?');
+			newButton.setAttribute('disabled', false);
+			newButton.setAttribute('onclick', 'window.location.reload()');
+		}
+	}
+
+//Core game logic
+	function clickOverlay() {
+		var clickObj1, clickObj2;
+		var onlyTwo = 0;
+
+//Need to work on this logic
+	//TASKS: Currently does not prevent a previous clickObj from being selected
+		if (wingame == false) {
+			$("div#gamecurtain").on("click", "td", function() {
+					$(this).css('opacity', 0);
+					if (onlyTwo == 0) {
+						clickObj1 = $(this);
+						onlyTwo++;
+						console.log(clickObj1.attr("class"));
+						console.log(clickObj1.attr("id"));
+
+					} else if (onlyTwo == 1) {
+						clickObj2 = $(this);
+						if (clickObj1.attr("class") == clickObj2.attr("class") &&
+						 clickObj1.attr("id") != clickObj2.attr("id")) {
+							incrementScores();
+							clickObj1.css('pointer-events', 'none');
+							clickObj2.css('pointer-events', 'none');
+							clickObj1 = null;
+							clickObj2 = null;
+							onlyTwo = 0;
+						}
+						else {
+							onlyTwo = 0;
+							setTimeout(function() {
+								clickObj1.css('opacity', 1);
+								clickObj2.css('opacity', 1);
+							}, 500);
+						}
+
+
+					console.log('Clicking cell');
+				}
+
+			});
+		}
+	}
+
+//Div curtain overlay and start game timer
+	function overlayTable() {
+		$('#game').clone().appendTo('#gamecurtain');
+		$('#gamecurtain').find('IMG').each(function() {
+			$(this).attr('src', 'web_q2_pics/frontImg.jpg');
+			if (picNum == 8) duration = 120;
+			if (picNum == 10) duration = 150;
+			if (picNum == 12) duration = 180;
+			startTimer(duration);
+		});
+	}
+
+//Set up game timer
+	function startTimer(duration) {
+	    var minutes = Math.floor(duration / 60);
+	    var seconds = duration % 60;
+	    var timer = setInterval(function() {
+	    	if (seconds < 10 && minutes >= 0) {
+	    		document.getElementById('gameTimeDisplay').innerHTML=
+	    	"Game Time: " + minutes + ":0" + seconds;
+	    	} else {
+	    		document.getElementById('gameTimeDisplay').innerHTML=
+	    	"Game Time: " + minutes + ":" + seconds;
+	    	}
+        	
+        	if (wingame == true) {
+        		clearInterval(timer);
+        		document.getElementById('gameTimeDisplay').innerHTML=
+	    	"Time left over: " + minutes + ":" + seconds;
+        	}
+        	seconds--;
+	        if (seconds <= 0 && minutes > 0) {
+	            minutes -= 1;
+	            seconds = 59;
+	        } if (minutes <= 0 && seconds <= 0) {
+	        	clearInterval(timer);
+	        	document.getElementById('gameTimeDisplay').innerHTML=
+	    	"Game Over";
+		    	var newButton = document.getElementById('butt');
+				newButton.setAttribute('value', 'Restart?');
+				newButton.setAttribute('onclick', 'window.location.reload()');
+	        }
+	    }, 1000);
+	   
+	}
+
+
+//Uses DOM to dynamically create a table based on rows and columns.
+	function addTablePics(picsnum) {
+		var position = 0;
+		var totalR = 0;
+		var totalC = 0;
+
+		if (picsnum == 8) {
+			totalR = 4;
+			totalC = 4;
+			shuffle(arr8);
+		} else if (picsnum == 10) {
+			totalR = 4;
+			totalC = 5;
+			shuffle(arr10);
+		} else if (picsnum == 12) {
+			totalR = 4;
+			totalC = 6;
+			shuffle(arr12);
+		}
+		
+
+		var tableParent = document.createElement('table');
+		tableParent.setAttribute('class', 'table');
+		tableParent.style.width= '100%';
+		var tableBody = document.createElement('tbody');
+
+		for (var i = 0; i < totalR; i++) {
+			var row = document.createElement('tr');
+			for (var j = 0; j < totalC; j++) {
+				var cell = document.createElement('td');
+				var content = document.createElement('IMG');
+
+				if (picsnum == 8) {
+					content.src = 'web_q2_pics/' + arr8[position] + '.jpg';
+
+					cell.setAttribute('id', 'id' + position);
+					//The class will be used for comparison later.
+					cell.setAttribute('class', arr8[position]);
+					position++;
+				} else if (picsnum == 10) {
+					content.src = 'web_q2_pics/' + arr10[position] + '.jpg';
+
+					cell.setAttribute('id', 'id' + position);
+					//The class will be used for comparison later.
+					cell.setAttribute('class', arr10[position]);
+					position++;
+				} else if (picsnum == 12) {
+					content.src = 'web_q2_pics/' + arr12[position] + '.jpg';
+
+					cell.setAttribute('id', 'id' + position);
+					//The class will be used for comparison later.
+					cell.setAttribute('class', arr12[position]);
+					position++;
+				}
+				
+
+				cell.appendChild(content);
+				row.appendChild(cell);
+			}
+
+			tableBody.appendChild(row);
+		}
+
+		tableParent.appendChild(tableBody);
+		document.getElementById('game').appendChild(tableParent);
+		position = 0;
+		memTime *= 1000;
+		setTimeout(function() {
+			overlayTable();
+		}, memTime);
+}
+
+
+</script>
+<style>
+	body {
+		margin:32px;
+		text-align: center;
+	}
+
+	img {
+		max-width: 100%;
+		max-height: 100%;
+	}
+
+	.optionSelect {
+		display: flex;
+	}
+	.timer {
+		flex: 0 0 50%;
+	}
+	.pictures {
+		flex: 1;
+	}
+
+	#container {
+		position: relative;
+	}
+	#game {
+		height: 350px;
+		width: 350px;
+		position: absolute;
+	}
+	#gamecurtain {
+		position: relative;
+	}
+</style>
+	</head>
+
+	<body onload="addTablePics()">
+		<h2>Welcome to a Memory Matching Game</h2>
+		<p>Select how many pairs of pictures you would like as well as how long you want to play, and then click Start!</p>
+
+		<div class="optionSelect">
+			<div class="timer">
+				<p>Select Memorize Timer</p>
+			    <select id= "time">
+			    	<option>3</option>
+			    	<option>5</option>
+			    	<option>8</option>
+			    </select>
+			</div>
+			<div class="pictures">
+				<p>Select Number of Pictures</p>
+			    <select id="pics">
+			    	<option>8</option>
+			    	<option>10</option>
+			    	<option>12</option>
+			    </select>
+			</div>
+		</div>
+		<p id="score">Score: 0</p>
+		<p id="gameTimeDisplay">Game Time: 0</p>
+
+		<input type="button" id="butt" value="Start!" onclick="getGameOptions()">
+	<div id="container">
+		<div id="game"></div>
+		<div id="gamecurtain"></div>
+	</div>
+
+		<p>Made by Samuel Yi</p>
+	</body>
