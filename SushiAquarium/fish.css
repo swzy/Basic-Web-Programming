@@ -1,0 +1,455 @@
+html {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 1em;
+}
+
+body{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	overflow:hidden;
+}
+
+h1 {
+	margin:0; text-align:center;
+}
+
+#titleElements {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title {
+	font-size: 40px;
+}
+
+#title2 {
+	top: 150px;
+	font-size: 60px;
+    text-align: center;
+    min-height: 200px;
+  	position: relative;
+}
+
+#searchfunct {
+	position: relative;
+	text-align:center;
+	display: block;
+}
+
+#locate {
+	text-align: center;
+    position:relative;
+	font-size: 1.5em;
+	background: white;
+	padding: 3px;
+	display: inline-block;
+	border-radius: 9999em;
+}
+
+#butt, #secondaryButton {
+	position:relative;
+	background-color: transparent;
+	 padding: 10px 5px;
+	 display: inline-block;
+	 font-size: 14px;
+	 letter-spacing: 0.3px;
+}
+
+#secondaryButton {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	visibility: hidden;
+}
+
+/*keeps fish hidden until user clicks button*/
+.hidefish{
+	visibility: hidden;
+}
+
+/*styling element for the popup boxes*/
+.popup {
+  position: relative;
+  display: inline-block;
+  left: 35%;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 220px;
+  background-color: #bfbfbf;
+  opacity: .9;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+}
+
+
+/*hide checkbox*/
+input[type="radio"]{
+	position:fixed; 
+	left:-99px; 
+	top:-99px;
+}
+
+/*play area*/
+.wrapper{  
+  height:720px;
+  position:relative;
+  background-image:url("./Fishy Pics/reef.jpg");
+  background-size: cover;
+}
+
+/* Change time after 'move' for fish speed */
+
+.input-circle ~ .fish2,.fish9{
+  opacity:0;
+  transition:2.5s;
+  -webkit-animation: move-right 10s infinite alternate;
+  animation: move-right 10s infinite alternate;
+}
+
+.input-circle ~ .fish1,.fish5{
+	opacity:0;
+	transition:2.5s;
+	-webkit-animation:move-left 10s alternate;
+	animation:move-left 10s infinite alternate;
+}
+.input-circle ~ .fish3,.fish7{
+	opacity:0;
+	transition:2.5s;
+	-webkit-animation: move-octopus 20s infinite normal;
+	animation: move-octopus 20s infinite normal;
+}
+.input-circle ~ .fish4{
+	opacity:0;
+	transition:2.5s;
+	animation: move-crab 15s infinite alternate;
+}
+.input-circle ~ .fish6{
+	opacity:0;
+	transition:2.5s;
+	animation: move-mantaray 15s infinite alternate;
+}
+
+.input-circle ~ .fish8, .fish10{
+	opacity:0;
+	transition:2.5s;
+	-webkit-animation:back-and-forth 15s infinite normal;
+	animation:back-and-forth 15s infinite normal;
+}
+
+/* For each new fish add a new input-circle# and the appropriate class name */
+
+.input-circle1:not(:checked) ~ .fish1, 
+.input-circle2:not(:checked) ~ .fish2,
+.input-circle3:not(:checked) ~ .fish3,
+.input-circle4:not(:checked) ~ .fish4,
+.input-circle5:not(:checked) ~ .fish5,
+.input-circle6:not(:checked) ~ .fish6,
+.input-circle7:not(:checked) ~ .fish7,
+.input-circle8:not(:checked) ~ .fish8,
+.input-circle9:not(:checked) ~ .fish9,
+.input-circle10:not(:checked) ~ .fish10
+{
+  opacity:1; 
+}
+
+.input-circle1:checked ~ .fish1 span,
+.input-circle2:checked ~ .fish2 span,
+.input-circle3:checked ~ .fish3 span,
+.input-circle4:checked ~ .fish4 span,
+.input-circle5:checked ~ .fish5 span,
+.input-circle6:checked ~ .fish6 span,
+.input-circle7:checked ~ .fish7 span,
+.input-circle8:checked ~ .fish8 span,
+.input-circle9:checked ~ .fish9 span,
+.input-circle10:checked ~ .fish10 span
+{
+  display:block;
+}
+
+
+/* Not sure how but this controls movement. Don't mess with it too much */
+/* This kind of determines how far the object will travel overall - Elven */
+
+.fish1{   
+  position:absolute;
+  left:40%;  
+  cursor: url("./Fishy Pics/harpoon.png"), auto;
+}
+.fish2{   
+  position:absolute;
+  left:40%;  
+  cursor: url("./Fishy Pics/harpoon.png"), auto;
+}
+.fish3{
+	position:absolute;
+	right:200%;
+	cursor: url("./Fishy Pics/harpoon.png"), auto;
+}
+.fish4{
+	position:absolute;
+	right:50%;
+	cursor: url("./Fishy Pics/harpoon.png"), auto;
+}
+.fish5{
+	position:absolute;
+	left:80%;
+	cursor: url("./Fishy Pics/harpoon.png"), auto;
+}
+.fish6{
+	position:absolute;
+	right:80%;
+	cursor: url("./Fishy Pics/harpoon.png"), auto;
+}
+.fish7{
+	position:absolute;
+	right:150%;
+	cursor: url("./Fishy Pics/harpoon.png"), auto;
+}
+.fish8{
+	position:absolute;
+	right:150%;
+	cursor: url("./Fishy Pics/harpoon.png"), auto;
+}
+.fish9{
+	position:absolute;
+	right:150%;
+	cursor: url("./Fishy Pics/harpoon.png"), auto;
+}
+.fish10{
+	position:absolute;
+	right:150%;
+	cursor: url("./Fishy Pics/harpoon.png"), auto;
+}
+
+/* Combined with movement pattern, use delay/transform to create randomness */
+
+.fish1 {bottom:180px;
+  animation-delay: -2s!important;
+  transform:scale(0.9);
+}
+
+.fish2 {bottom:20px;
+  animation-delay: -4s!important;
+}
+
+.fish3 {bottom:1px;
+	animation-delay: -0.1s!important;
+	transform:scale(0.7);
+}
+.fish4 {bottom:10px;
+	animation-delay: -8s!important;
+	transform:scale(0.5);
+}
+.fish5 {bottom:200px;right:150px;
+	animation-delay: -9s!important;
+}
+.fish6 {bottom:200px;
+	animation-delay: -12s!important;
+	transform:scale(0.6);
+}
+.fish7 {bottom:100px;
+	animation-delay: -14s!important;
+	transform:scale(0.9);
+}
+.fish8 {bottom:475px;
+	animation-delay: -1s!important;
+	transform:scale(0.5);
+}
+.fish9 {bottom:300px;
+	animation-delay: -2s!important;
+	transform:scale(0.7);
+}
+.fish10 {bottom:550px;
+	animation-delay: -3s!important;
+	transform:scale(0.9);
+}
+
+/* Movement pattern */
+/*Top and bottom are the opposite of what you'd expect*/
+
+@keyframes back-and-forth{
+	0%{right:10%;}
+	20%{right:30%;}
+	40%{right:50%;}
+	60%{right: t:70%;}
+	80%{right:90%;}
+	100%{right:110%}
+}
+
+@keyframes move-right{
+0%{left:10%;top:60%;}
+20%{left:30%;}
+40%{left:50%;}
+60%{left:70%;top:70%;}
+80%{left:90%;}
+100%{left:110%;top:40%;}
+}
+@keyframes move-left{
+	0%{right:10%;top:30%;}
+	20%{right:30%;}
+	40%{right:50%;}
+	60%{right:70%;top:40%;}
+	80%{right:90%;}
+	100%{right:110%;top:30%;}
+}
+@keyframes move-crab{
+	0%{right:0%;top:70%;}
+	10%{right:20%;top:70%;}
+	20%{right:10%;top:70%;}
+	30%{right:30%;top:70%;}
+	40%{right:20%;top:70%;}
+	50%{right:35%;top:70%;}
+	60%{right:30%;top:70%;}
+	70%{right:50%;top:70%;}
+	80%{right:40%;top:70%;}
+	90%{right:70%;top:70%;}
+	100%{right:100%;top:70%;}
+}
+@keyframes move-octopus{
+	0%{left:-10%;}
+	10%{left:10%;}
+	20%{left:20%;}
+	30%{left:40%;}
+	40%{left:50%;}
+	50%{left:70%;}
+	60%{left:80%;}
+	70%{left:100%;}
+	80%{left:110%;}
+	90%{left:130%;}
+	100%{left:150%;}
+}
+@keyframes move-mantaray{
+	0%{right:0%;top:20%;}
+	50%{right:50%;top:40%;}
+	100%{right:100%;top:20%;}
+}
+
+/* For Safari browser compatability */
+
+@-webkit-keyframes back-and-forth{
+	0%{right:10%;}
+	20%{right:30%;}
+	40%{right:50%;}
+	60%{right: t:70%;}
+	80%{right:90%;}
+	100%{right:110%}
+}
+
+@-webkit-keyframes move-right{
+	0%{left:10%;top:60%;}
+	20%{left:30%;}
+	40%{left:50%;}
+	60%{left:70%;top:70%;}
+	80%{left:90%;}
+	100%{left:110%;top:40%;}
+}
+@-webkit-keyframes move-left{
+	0%{right:10%;top:30%;}
+	20%{right:30%;}
+	40%{right:50%;}
+	60%{right:70%;top:40%;}
+	80%{right:90%;}
+	100%{right:110%;top:30%;}
+}
+@-webkit-keyframes move-octopus{
+	0%{left:-10%;}
+	10%{left:10%;}
+	20%{left:20%;}
+	30%{left:40%;}
+	40%{left:50%;}
+	50%{left:70%;}
+	60%{left:80%;}
+	70%{left:100%;}
+	80%{left:110%;}
+	90%{left:130%;}
+	100%{left:150%;}
+}
+
+/*animate the fish dying*/
+.killfish{
+	animation movedown 1.5s;
+	-webkit-animation: movedown 1.5s;
+}
+
+@keyframes movedown{
+	0%{transform: rotate(0deg);}
+	5%{transform: rotate(9deg);}
+	10%{transform: rotate(18deg);}
+	15%{transform: rotate(27deg);}
+	20%{transform: rotate(36deg);}
+	25%{transform: rotate(45deg);}
+	30%{transform: rotate(54deg);}
+	35%{transform: rotate(63deg);}
+	40%{transform: rotate(72deg);}
+	45%{transform: rotate(81deg);}
+	50%{transform: rotate(90deg);}
+	55%{transform: rotate(99deg);}
+	60%{transform: rotate(108deg);}
+	65%{transform: rotate(117deg);}
+	70%{transform: rotate(126deg);}
+	75%{transform: rotate(135deg);}
+	80%{transform: rotate(144deg);}
+	85%{transform: rotate(153deg) translateY(-5px);;}
+	90%{transform: rotate(162deg) translateY(-20px);;}
+	95%{transform: rotate(171deg) translateY(-200px);;}
+	100%{transform: rotate(180deg) translateY(-2000px);}
+}
+
+/* For Safari browser compatability */
+
+@-webkit-keyframes movedown{
+	0%{transform: rotate(0deg);}
+	5%{transform: rotate(9deg);}
+	10%{transform: rotate(18deg);}
+	15%{transform: rotate(27deg);}
+	20%{transform: rotate(36deg);}
+	25%{transform: rotate(45deg);}
+	30%{transform: rotate(54deg);}
+	35%{transform: rotate(63deg);}
+	40%{transform: rotate(72deg);}
+	45%{transform: rotate(81deg);}
+	50%{transform: rotate(90deg);}
+	55%{transform: rotate(99deg);}
+	60%{transform: rotate(108deg);}
+	65%{transform: rotate(117deg);}
+	70%{transform: rotate(126deg);}
+	75%{transform: rotate(135deg);}
+	80%{transform: rotate(144deg);}
+	85%{transform: rotate(153deg);}
+	90%{transform: rotate(162deg);}
+	95%{transform: rotate(171deg);}
+	100%{transform: rotate(180deg) translateY(-2000px);}
+}

@@ -1,0 +1,75 @@
+<html>
+<head>
+	<meta name="viewport" context="width=device-width, height=device-height">
+  	<link rel="stylesheet" type="text/css" href="fish.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="scripts.js"></script>
+  <title>Sushi Finder Deluxe</title>
+</head>
+<body>
+	<div class="wrapper">
+
+		<div class="titleElements">
+			<h1 id='title'>Welcome to the Aquarium!</h1>
+
+			<h2 id='title2'>Let's find some sushi</h2>
+			<div id="searchfunct">
+				<input type="text" id="locate" placeholder="Enter a city or ZIP">
+				<br>
+				<br>
+				<button id="butt" onclick="getName();myMove();">search and go!</button>
+			</div>
+
+			<input type='button' value="Restart?" id='secondaryButton' onclick="window.location.reload()">
+		</div>
+
+		<div id="fishes" class="hidefish">
+		<input class="input-circle input-circle1" type="radio" id="circle1" >
+		<label for="circle1" class="fish1">
+		<img id="pic1" src="./Fishy Pics/salmon.png" style="width:175px;height:auto" onclick="getInfo(3, pic1)"></label>
+
+		<input class="input-circle input-circle2" type="radio" id="circle2" >
+		<label for="circle2" class="fish2">
+		<img id="pic2" src="./Fishy Pics/clownfish.png" style="width:100px;height:auto;" onclick="getInfo(5, pic2)"></label>
+
+		<input class="input-circle input-circle3" type="radio" id="circle3" >
+		<label for="circle3" class="fish3">
+		<img id="pic3" src="./Fishy Pics/octopus.png" style="width:275px;height:auto;" onclick="getInfo(2, pic3)"></label>
+	
+		<input class="input-circle input-circle4" type="radio" id="circle4" >
+		<label for="circle4" class="fish4">
+		<img id="pic4" src="./Fishy Pics/crab.png" style="width:150px;height:auto;" onclick="getInfo(8, pic4)"></label>
+
+		<input class="input-circle input-circle5" type="radio" id="circle5">
+		<label for="circle5" class="fish5">
+		<img id="pic5" src="./Fishy Pics/greatwhite.png" style="width:800px;height:auto;" onclick="getInfo(0, pic5)"></label>
+	
+		<input class="input-circle input-circle6" type="radio" id="circle6" >
+		<label for="circle6" class="fish6">
+		<img id="pic6" src="./Fishy Pics/manta ray.png" style="width:500px;height:auto;" onclick="getInfo(1, pic6)"></label>
+	
+		<input class="input-circle input-circle7" type="radio" id="circle7" >
+		<label for="circle7" class="fish7">
+		<img id="pic7" src="./Fishy Pics/shrimp.png" style="width:50px;height:auto;" onclick="getInfo(9, pic6)"></label>
+
+		<input class="input-circle input-circle8" type="radio" id="circle8" >
+		<label for="circle8" class="fish8">
+		<img id="pic8" src="./Fishy Pics/fish8.png" style="width:120px;height:auto;" onclick="getInfo(6, pic8)"></label>
+
+		<input class="input-circle input-circle9" type="radio" id="circle9" >
+		<label for="circle9" class="fish9">
+		<img id="pic9" src="./Fishy Pics/fish9.png" style="width:100px;height:auto;" onclick="getInfo(7, pic9)"></label>
+
+		<input class="input-circle input-circle10" type="radio" id="circle10" >
+		<label for="circle10" class="fish10">
+		<img id="pic10"src="./Fishy Pics/fish10.png" style="width:150px;height:auto;" onclick="getInfo(4, pic10)"></label>
+  	</div>
+	</div>
+
+  	<div id="yelpWrapper" class="yelpWrapper"> <!--This is the wrapper for the Yelp! pop-up once you click on a fish.-->
+	</div>
+	
+	</body>
+</html>
+
