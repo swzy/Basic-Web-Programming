@@ -1,0 +1,42 @@
+header{
+	text-align:center;
+	font-size:50px;
+}
+#inputZip{
+	text-align:center;
+}
+#fiveDay{
+	text-align:center;
+}
+#fiveDay>div{ /*every 'div' with parent 'id=fiveDay'*/
+	border: 1px solid black;
+	display:inline-block;
+	background-color: #7ca6c7;
+}
+[id*=Pic] img{ /*searches every id with "Pic" in it*/
+	width:200px;
+	height:auto;
+}
+#todayTitle{
+	color:gold;
+}
+#todayTemp{
+	font-size:30px;
+}
+[id*=Low]{ /*every lowtemp*/
+	display:inline-block;
+	color:blue;
+}
+[id*=High]{ /*every hightemp*/
+	display:inline-block;
+	color:orange;
+}
+[id*=Details]{ /*formatting the size of the smaller details*/
+	font-size:20px;
+}
+#tomorrowExtremes{ /*formatting the size of the highs and lows for the days after today*/
+	font-size:50px;
+}
+[id*=DaysExtremes]{ /*the highs and lows for the days after tomorrow*/
+	font-size:50px;
+}
