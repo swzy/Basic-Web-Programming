@@ -93,6 +93,7 @@ function createPopup(num)
 
 function getInfo(num,picname)
 {
+	$('.wrapper').css('min-height', '95%');
 	var x = num;
 	document.getElementById('yelpWrapper').appendChild(createPopup(x));
 	picname.setAttribute('class','killfish');		//start the kill fish animation

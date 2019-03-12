@@ -1,6 +1,7 @@
 html {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-size: 1em;
+	height: 100%;
 }
 
 body{
@@ -114,7 +115,6 @@ h1 {
   visibility: visible;
 }
 
-
 /*hide checkbox*/
 input[type="radio"]{
 	position:fixed; 
@@ -122,9 +122,9 @@ input[type="radio"]{
 	top:-99px;
 }
 
-/*play area*/
 .wrapper{  
-  height:720px;
+  height: auto;       /* These two lines were the key. */
+  min-height: 100%;
   position:relative;
   background-image:url("./Fishy Pics/reef.jpg");
   background-size: cover;
