@@ -1,0 +1,16 @@
+html {
+	font-family: -apple-system, BlinkMacSystemFont
+}
+
+body { 
+	font: 14px sans-serif; 
+}
+        
+.wrapper { 
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+	padding: 50px; 
+}
