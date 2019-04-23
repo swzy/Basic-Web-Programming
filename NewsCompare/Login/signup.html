@@ -1,0 +1,44 @@
+<html>
+<head>
+	<title>Signup</title>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="loginstyle.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+	<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body>
+
+	<div class = "top">
+	<h1>News Readr</h1>
+	</div>
+
+	<div class = "divider"></div>
+	
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans|Poiret+One" rel="stylesheet">
+	
+<h1>Create a New Account</h1>
+
+<div id="main">	
+<h5>Please Enter Your Information Below</h5>
+
+<div id="root"></div>
+<form id="form">
+	<label id="helpme">Email Address: </label><input id="emailadd" type="text" name="emailadd"><br><br>
+	<label id="helpme">Password: </label><input type="password" name="pwd1"><br><br>
+	<label id="helpme">Re-Enter Password: </label><input type="password" name="pwd2"><br><br>
+	<label id="helpme">Security Question:</label>
+	<select name="question">
+		<option>What year were you born?</option>
+		<option>How stressed are you? (0-100)</option>
+		<option>What was the name of your first pet?</option>
+		<option>What is your favorite food?</option>
+		<option>How old do you want to live to be?</option>
+	</select><br><br>
+	<label id="helpme" name="answ">Answer: </label><input type="text" name="ans"><br><br>
+	<input type="button" id="butt" value="Register" onclick="check()">
+</form>
+<p> <a href="../index.html">Back to Home</a></p>
+</div>
+
+</body>
+</html>
