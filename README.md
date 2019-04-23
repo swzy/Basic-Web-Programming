@@ -6,3 +6,4 @@ WeatherForecast - Simple weather forecaster using JS/JQuery and OpenWeather API
 SushiAquarium - Sushi restaurant recommender using YelpAPI  
 FishCapitalism - Mock E-commerce site written in PHP/MySQL  
 SimplePHPauth - User authentication in PHP  
+NewsCompare - Redesign of NewsApp, comparing content from NewsAPI for readability  
